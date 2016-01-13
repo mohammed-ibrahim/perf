@@ -28,10 +28,11 @@ public class Perf {
         prop.load(new FileInputStream(file));
 
         int nThreads = Integer.parseInt(prop.getProperty("num_of_calls"));
+        int nConcurrentThreads = Integer.parseInt(prop.getProperty("num_conc_threads"));
         String method = prop.getProperty("method");
         List<String> urls = getUrls(prop.getProperty("url_list"));
 
-        ExecutorService service = Executors.newFixedThreadPool(10);
+        ExecutorService service = Executors.newFixedThreadPool(nConcurrentThreads);
 
         Random random = new Random();
         System.out.println("Scheduling the number of threads: " + Integer.toString(nThreads));
